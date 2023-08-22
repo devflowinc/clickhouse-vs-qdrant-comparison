@@ -12,17 +12,17 @@
 </strong>
 </p>
 
-# Can Clickhouse replace a SVD (qdrant)?
+# Exploring replacing our SVD (qdrant) with Clickhouse
 
-The purpose of this repository was to evaluate replacing our system's SVD, qdrant, with Clickhouse. It would be convenient to use Clickhouse as it is a full DBMS and would allow us to avoid executing external db joins when performing various search operations.
+The objective behind this notebook was to assess the feasibility of substituting our system's SVD (specialized vector database), [Qdrant](https://qdrant.tech/), with [Clickhouse](https://clickhouse.com/). Employing ClickHouse would offer the advantage of utilizing a comprehensive DBMS, thereby eliminating the need for external database joins during diverse search operations.
 
 ## Findings
 
-The most important thing to note is that we are building out our systems such that it is easy to replace the vector store that is being used under the hood. It is difficult to predict how vector store solutions will evolve, and we are not yet willing to bet the house on any single data store.
+The key takeaway here is that we are strategically developing our systems to facilitate seamless replacement of the underlying vector store. Anticipating the uncertain trajectory of vector store solutions, we're exercising caution and refraining from fully committing to any particular data store solution at this point.
 
-For now, we will stick to [Qdrant](https://qdrant.tech/) for our competitive debate demos as [Clickhouse](https://clickhouse.com/)'s [annoy index](https://clickhouse.com/docs/en/engines/table-engines/mergetree-family/annindexes) is too innacurate to be viable.
+For now, we will stick to [Qdrant](https://qdrant.tech/) for our competitive debate demos as [Clickhouse](https://clickhouse.com/)'s [annoy index](https://clickhouse.com/docs/en/engines/table-engines/mergetree-family/annindexes) is too imprecise to be viable.
 
-However, it is important to note that clickhouse wins out on pure speed and can be the right choice for datasets which are very sparse or large. We may use Clickhouse for future customer deployments when it makes sense to do so.
+However, it is important to note that Clickhouse wins out on pure speed and can be the right choice for datasets characterized by substantial sparsity or considerable size. We may use Clickhouse for future customer deployments when it makes sense to do so.
 
 ## Replicating our results
 
