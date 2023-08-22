@@ -6,16 +6,22 @@ services:
     restart: on-failure
     environment:
       CLICKHOUSE_DB: uptrace
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "localhost:8123/ping"]
-      interval: 1s
-      timeout: 1s
-      retries: 30
     volumes:
-      - ch_data2:/var/lib/clickhouse
+      - ch_data:/var/lib/clickhouse
     ports:
       - "8123:8123"
       - "9000:9000"
+  
+  qdrant-database:
+    image: qdrant/qdrant:v1.3.2
+    environment:
+      - QDRANT__SERVICE__API_KEY=qdrant_pass
+    ports:
+      - 6333:6333
+      - 6334:6334
+    volumes:
+      - qdrant_data:/qdrant/storage
 
 volumes:
-  ch_data2:
+  ch_data:
+  qdrant_data:
